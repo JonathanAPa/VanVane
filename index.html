@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💙 Una Sorpresa Inolvidable, Vannessa 💙</title>
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: radial-gradient(circle at bottom, #00111f, #000);
+      color: #fff;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .estrella {
+      position: absolute;
+      width: 2px;
+      height: 80px;
+      background: linear-gradient(45deg, white, transparent);
+      opacity: 0.8;
+      animation: caer 3s linear infinite;
+    }
+
+    @keyframes caer {
+      0% { transform: translate(0, 0) rotate(45deg); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translate(600px, 600px) rotate(45deg); opacity: 0; }
+    }
+
+    #entrada-nombre {
+      background: transparent;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      z-index: 100;
+      transition: all 1s ease-out;
+    }
+
+    #contenedor-celebracion {
+      position: relative;
+      text-align: center;
+      padding: 30px 50px;
+      background: transparent;
+      border-radius: 25px;
+      max-width: 90%;
+      z-index: 50;
+      overflow: visible;
+    }
+
+    #nombre-input {
+      padding: 12px;
+      margin: 15px 0;
+      border: 2px solid #87cefa;
+      border-radius: 10px;
+      background-color: #ffffff;
+      color: #0d1a2b;
+      font-size: 1.2em;
+      width: 220px;
+      text-align: center;
+    }
+
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 10px;
+      background-color: #da24aa;
+      color: white;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 4px 10px rgba(30, 144, 255, 0.5);
+    }
+
+    button:hover {
+      background-color: #63b3ff;
+      transform: scale(1.05);
+    }
+
+    #galeria-fotos {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      padding: 10px;
+    }
+
+    .foto-real {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      transition: transform 0.3s;
+    }
+
+    .foto-real:hover { transform: scale(1.05); }
+
+    /* 🌼 GERBERAS CELESTES — AHORA ESPARCIDAS POR TODA LA PANTALLA */
+    #gerberas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .gerbera {
+      position: absolute;
+      font-size: 3em;
+      color: #87cefa;
+      text-shadow: 0 0 10px #87cefa, 0 0 20px #00bfff;
+      opacity: 0;
+      line-height: 1;
+      animation:
+        aparecer 2s ease-out forwards,
+        flotar-lento var(--tiempo-flotar) ease-in-out var(--delay) infinite alternate,
+        girar var(--tiempo-girar) linear infinite;
+    }
+
+    @keyframes aparecer {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes flotar-lento {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(var(--dx), var(--dy)); }
+    }
+
+    @keyframes girar {
+      from { filter: hue-rotate(0deg); }
+      to { filter: hue-rotate(360deg); }
+    }
+
+    #mensaje-final {
+      font-family: 'Brush Script MT', cursive;
+      font-size: 4em;
+      color: #87cefa;
+      font-weight: bold;
+      margin-top: 50px;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 2.5s ease-in, transform 2.5s ease-in;
+      text-shadow: 0 0 15px rgba(135, 206, 250, 0.8);
+    }
+
+    .fuego {
+      position: fixed;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px;
+      opacity: 0;
+      pointer-events: none;
+      animation: explotar 1.5s ease-out forwards;
+      z-index: 20;
+    }
+
+    @keyframes explotar {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(0) translate(var(--x), var(--y)); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    for (let i = 0; i < 30; i++) {
+      const estrella = document.createElement('div');
+      estrella.classList.add('estrella');
+      estrella.style.top = Math.random() * window.innerHeight + 'px';
+      estrella.style.left = Math.random() * window.innerWidth + 'px';
+      estrella.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(estrella);
+    }
+  </script>
+
+  <div id="entrada-nombre">
+    <label for="nombre-input">Por favor, ingresa el nombre de la persona más hermosa del mundo:</label>
+    <input type="text" id="nombre-input" placeholder="Escribe 'Vannessa' aquí" required>
+    <button onclick="iniciarCelebracion()">Abrir Sorpresa</button>
+  </div>
+
+  <div id="contenedor-celebracion" style="display: none;">
+    <div id="gerberas-container"></div>
+
+    <h1>¡Feliz Cumpleaños, Mi Amor!</h1>
+    <h2>Un pequeño recuerdo de nuestros momentos</h2>
+
+    <div id="galeria-fotos">
+      <img src="img\Van1.jpg" alt="Recuerdo 1" class="foto-real">
+      <img src="img\Van2.jpg" alt="Recuerdo 2" class="foto-real">
+      <img src="img\Van3.jpg" alt="Recuerdo 3" class="foto-real">
+      <img src="img\Van5.jpg" alt="Recuerdo 4" class="foto-real">
+      <img src="img\Van6.jpg" alt="Recuerdo 5" class="foto-real">
+      <img src="img\Van4.jpg" alt="Recuerdo 6" class="foto-real">
+      <img src="img\Van7.jpg" alt="Recuerdo 7" class="foto-real">
+      <img src="img\Van8.jpg" alt="Recuerdo 8" class="foto-real">
+      <img src="img\Van9.jpg" alt="Recuerdo 9" class="foto-real">
+      <img src="img\Van10.jpg" alt="Recuerdo 10" class="foto-real">
+    </div>
+
+    <p id="mensaje-final">Feliz cumpleaños hermosaaa, TE AMOOO!</p>
+  </div>
+
+
+
+  <script>
+    const coloresFuegos = ['#ffff00', '#ff69b4', '#87cefa', '#ffffff', '#ff4500'];
+    const numGerberas = 50;
+
+    function iniciarCelebracion() {
+      const nombreInput = document.getElementById('nombre-input').value.trim();
+
+      if (nombreInput.toLowerCase() !== 'vannessa') {
+        alert('¡Te equivocaste! Debes ingresar "Vannessa" para ver la sorpresa.');
+        return;
+      }
+
+      document.getElementById('entrada-nombre').style.opacity = '0';
+      document.getElementById('entrada-nombre').style.transform = 'translateY(-100px)';
+
+      setTimeout(() => {
+        document.getElementById('entrada-nombre').style.display = 'none';
+        document.getElementById('contenedor-celebracion').style.display = 'block';
+      }, 1000);
+
+      crearGerberasPorTodaPantalla(numGerberas);
+      lanzarFuegosArtificiales();
+
+      setTimeout(() => {
+        const mensaje = document.getElementById('mensaje-final');
+        mensaje.style.opacity = '1';
+        mensaje.style.transform = 'scale(1)';
+      }, 1500);
+    }
+
+    // 🌸 Gerberas distribuidas aleatoriamente por toda la pantalla
+    function crearGerberasPorTodaPantalla(cantidad) {
+      const container = document.getElementById('gerberas-container');
+
+      for (let i = 0; i < cantidad; i++) {
+        const gerbera = document.createElement('span');
+        gerbera.classList.add('gerbera');
+        gerbera.textContent = '❀';
+
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
+        gerbera.style.left = `${x}px`;
+        gerbera.style.top = `${y}px`;
+
+        gerbera.style.setProperty('--tiempo-flotar', `${6 + Math.random() * 10}s`);
+        gerbera.style.setProperty('--tiempo-girar', `${8 + Math.random() * 15}s`);
+        gerbera.style.setProperty('--dx', `${(Math.random() - 0.5) * 50}px`);
+        gerbera.style.setProperty('--dy', `${(Math.random() - 0.5) * 50}px`);
+        gerbera.style.setProperty('--delay', `${Math.random() * 5}s`);
+
+        container.appendChild(gerbera);
+      }
+    }
+
+    function lanzarFuegosArtificiales() {
+      const cantidadExplosiones = 15;
+      for (let i = 0; i < cantidadExplosiones; i++) {
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * (window.innerHeight - 200) + 100;
+        setTimeout(() => crearExplosion(x, y), i * 350);
+      }
+    }
+
+    function crearExplosion(startX, startY) {
+      const cuerpo = document.body;
+      const cantidadParticulas = 40;
+      const radioMax = 200;
+      const color = coloresFuegos[Math.floor(Math.random() * coloresFuegos.length)];
+
+      for (let i = 0; i < cantidadParticulas; i++) {
+        const particula = document.createElement('div');
+        particula.classList.add('fuego');
+        particula.style.left = `${startX}px`;
+        particula.style.top = `${startY}px`;
+        particula.style.backgroundColor = color;
+
+        const angulo = Math.random() * 2 * Math.PI;
+        const radio = Math.random() * radioMax;
+        particula.style.setProperty('--x', `${radio * Math.cos(angulo)}px`);
+        particula.style.setProperty('--y', `${radio * Math.sin(angulo)}px`);
+        cuerpo.appendChild(particula);
+        setTimeout(() => particula.remove(), 2000);
+      }
+    }
+  </script>
+</body>
+</html>
